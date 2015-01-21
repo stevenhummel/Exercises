@@ -1,0 +1,74 @@
+print ("Part 1: Easy \n") 
+#Python program to find the
+# H.C.F of two input number
+
+# define a function
+def hcf( x, y ):
+
+    """This function takes two
+    integers and returns the H.C.F"""
+
+    # choose the smaller number
+    if x > y:
+    
+        smaller = y
+    
+    else:
+    
+        smaller = x
+
+    #-- END check to find smaller number --#
+
+    # loop over integers from 1 to the smaller number.
+    for i in range( 1, smaller + 1 ):
+
+        # see if each divided by the other results in no remainder (% = modulo operator - remainder part of a division)
+        if ( ( x % i == 0 ) and ( y % i == 0 ) ):
+
+            # this is a common factor.  Store it, but also keep looking,
+            #    in case there is a greater one.
+            hcf = i
+
+        #-- END check to see if HCF --#
+
+    #-- END loop over integers from 1 to smaller of the two numbers --#
+
+    return hcf
+
+#-- END function hcf() --#
+
+# take input from the user
+#num1 = int(input("Enter first number: "))
+#num2 = int(input("Enter second number: "))
+
+# OR just enter the numbers you want here
+num1 = 64
+num2 = 11
+
+print( "The H.C.F. of " + str( num1 ) + " and " + str( num2 ) + " is " + str( hcf( num1, num2 ) ) + ". \n \n")
+
+
+print ("Part 2: Less Easy \n") 
+
+#start with a list of numbers
+num_list= [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+#initialize a variable to hold the sum of the numbers
+sum_list=0
+
+#initialize a variable to hold a count of numbers in the list
+count_list=0
+
+#loop over the list of numbers. For each, add the current number to the sum and add 1 to the counter.
+for i in num_list:
+    sum_list= sum_list+num_list[i-1]
+    count_list=count_list+1
+
+#divide the sum by the count to get the mean
+dvd=float(sum_list)/float(count_list)
+
+#output the mean
+print ("The list of numbers is 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, and 10.\n"+
+    "The sum of the list is "+ str(sum_list) +".\n"+
+    "The count of items in the list is " + str(count_list)+ ".\n"+
+    "The mean of items in the list is " + str(dvd) +". \n \n")
