@@ -2,47 +2,33 @@ print ("Homework Exercise 4 \n")
 
 #WORD COUNT PROGRAM
 
-#create one list of all lines - empty list
-line_list = []
-
-#create variables for word count and character count
-word_count=0
-char_count=0    
-
 #store file name
 filename = "pg1513.txt"
 
 #open file
 my_file = open("pg1513.txt", "r")
 
+#create variables for line count, word count, and character count
+line_count = 0
+word_count = 0
+char_count = 0
+
 #loop over my_file
-for current_line in my_file:
-	#put each line into list "line_list"
-    line_list.append(current_line)
-	#end loop
+for lines in my_file:
+    #separate lines into words
+    words = lines.split()
+    #count number of lines
+    line_count += 1
+    #add number of words from word count
+    word_count += len(words)
+    #add number of characters from lines
+    char_count += len(lines)
+#end loop
 
-#count and print lines
-print "Number of lines:", len(line_list)
-
-#loop over lines
-for line in line_list:
-    #create temp variable to hold list of words
-    word = line.split()
-    #add number of words to word count
-    word_count += len(word)
-	#end loop
-
-#print word count
-print "Number of words:", word_count 
-
-#loop over lines and count characters
-for line in line_list:
-    char_count += len(line)
-	#end loop
-
-#print character count
-print "Number of characters:", char_count
-
+#print line count, word count, and character count
+print "Number of lines:", str(line_count)
+print "Number of words:", str(word_count)
+print "Number of characters:", str(char_count)
 
 
 #WORD CATALOG PROGRAM
@@ -54,18 +40,25 @@ word_list = []
 for line in line_list:
     words = line.split()
     word_list.extend (words) 
-    #end loop
+#end loop
 
 #create an empty dictionary 
 dictionary = {}
 
 #loop through each word. if word exists, add 1 to value. else, if word is new, set value to 1
 for words in word_list:
+
+    #make lowercase
+    words = words.lower()
+    #remove punctuation--found code: http://stackoverflow.com/questions/16050952/how-to-remove-all-the-punctuation-in-a-string-python
+    punctuation = set('!@#$%^&*()_-+={}[]:;"\|<>,.?/~`')
+    words = ''.join((x for x in words if x not in punctuation))
+    
     if words in dictionary:
-        dictionary[words]+=1  
+        dictionary[words] += 1  
     else:
-        dictionary[words]=1
-        #end loop
+        dictionary[words] = 1
+#end loop
 
 #print dictionary to screen, it will consume entire page!
 print(dictionary)
